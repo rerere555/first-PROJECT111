@@ -41,3 +41,15 @@ $response =[
 ];
 echo json_encode($response);
 }
+
+function deletePost($pdo, $id){
+$sql = "DELETE FROM `posts` WHERE `id` = :id";
+$stmt = $pdo->prepare($sql);
+$stmt->execute(['id'=> $id]);
+http_response_code(200);
+$res = [
+    'status' => true,
+    'message' => 'успешно удалено'
+];
+echo json_encode($res);
+}

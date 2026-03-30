@@ -25,6 +25,21 @@ switch ($method) {
         case 'POST':
             echo 'лох пенис свег';
             break;
+        case 'PATCH':
+            if ($type === 'posts') {
+                if (isset($id)) {
+                $data = file_get_contents('php://input');
+                $data = json_decode($data , true);
+                updatePost($pdo, $id, $data);
+                }
+            }
+        case 'DELETE':
+            if ($type === 'posts') {
+                if (isset($id)) {
+                    deletePost($pdo, $id);
+                }
+            }
+            break;
 }
 
 
