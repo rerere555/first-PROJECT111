@@ -5,16 +5,27 @@ require 'connectDB.php';
 require 'functions.php';
 header('Content-Type: application/json');
 
-
+$method = $_SERVER['REQUEST_METHOD'];
 $params = explode('/', $_GET['q']);
 $type = $params[0];
-$id = $params[1];
+if (isset($params[1])) {
+    $id = $params[1];
+} 
 
-if ($type === 'posts') {
-    if (isset($id)) {
-        getPost($pdo, 'id');
-    }else {
-        getPosts($pdo);
-    }
+switch ($method) {
+    case 'GET':
+        if ($type === 'posts') {
+            if (isset($id)) {
+                getPost($pdo, $id);
+            }else {
+                getPosts($pdo);
+            }
+        }
+        break;
+        case 'POST':
+            echo 'лох пенис свег';
+            break;
 }
+
+
 
