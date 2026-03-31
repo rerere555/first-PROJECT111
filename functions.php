@@ -26,8 +26,16 @@ echo json_encode($post);
     }
 }
 
-function addPost(){
-
+function addPost($pdo, $data){
+$sql = "INSERT INTO `posts` (`title`, `body`) VALUES (:title, :body) ";
+$stmt = $pdo->prepare($sql);
+$stmt->execute($data);
+http_response_code(201);
+$response = [
+    'status' => true,
+    'post_id' => $pdo->lastInsertId()
+];
+echo json_encode($response);
 }
 
 function updatePost($pdo, $id, $data){

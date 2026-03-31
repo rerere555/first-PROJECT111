@@ -33,6 +33,7 @@ switch ($method) {
                 updatePost($pdo, $id, $data);
                 }
             }
+            break;
         case 'DELETE':
             if ($type === 'posts') {
                 if (isset($id)) {
