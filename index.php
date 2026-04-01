@@ -23,7 +23,12 @@ switch ($method) {
         }
         break;
         case 'POST':
-            echo 'лох пенис свег';
+            if ($type === 'posts') {
+                    addPost($pdo, $_POST);
+    
+            }
+            
+            
             break;
         case 'PATCH':
             if ($type === 'posts') {
